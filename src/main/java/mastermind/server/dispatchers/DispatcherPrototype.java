@@ -33,10 +33,10 @@ public class DispatcherPrototype {
         do {
             String string = this.tcpip.receiveLine();
             frameType = FrameType.parser(string);
-            if (frameType != FrameType.CLOSE) {
+            if (frameType != null && frameType != FrameType.CLOSE) {
                 this.dispatch(frameType);
             }
-        } while (frameType != FrameType.CLOSE);
+        } while (frameType != null && frameType != FrameType.CLOSE);
         this.tcpip.close();
     }
 

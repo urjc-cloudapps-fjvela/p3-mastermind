@@ -13,7 +13,13 @@ public enum FrameType {
     IS_LOOSER,
     GET_BLACKS,
     GET_WHITES,
-    CLOSE
+    CLOSE,
+    RESUME,
+    GET_VALUE_STATE,
+    GET_WIDTH,
+    NEXT_STATE,
+    CLEAR,
+    RESET_STATE
     ;
 
     public static FrameType parser(String string) {

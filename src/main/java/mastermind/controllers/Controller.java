@@ -1,25 +1,19 @@
 package mastermind.controllers;
 
-import mastermind.models.Game;
-import mastermind.models.State;
-import santaTecla.utils.TCPIP;
+
+import mastermind.models.Session;
+
 
 public abstract class Controller {
 
-	protected Game game;
-	
-	protected State state;
-	protected TCPIP tcpip;
+	protected Session session;
 
-	Controller(Game game, State state, TCPIP tcpip) {
-		this.game = game;
-		this.state = state;
-		this.tcpip = tcpip;
+	Controller(Session session) {
+		this.session = session;
 	}
-	
+
 	public int getWidth() {
-		return game.getWidth();
+		return session.getWidth();
 	}
-
 
 }

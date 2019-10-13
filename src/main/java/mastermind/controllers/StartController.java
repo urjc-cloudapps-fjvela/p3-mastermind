@@ -1,22 +1,16 @@
 package mastermind.controllers;
 
-import mastermind.models.Game;
-import mastermind.models.State;
-import mastermind.types.FrameType;
-import santaTecla.utils.TCPIP;
 
-public class StartController extends AcceptorController {
+import mastermind.models.Session;
 
-	public StartController(Game game, State state, TCPIP tcpip) {
-		super(game, state, tcpip);
+
+public abstract class StartController extends AcceptorController {
+
+	public StartController(Session session) {
+		super(session);
 	}
 
-	public void start() {
-		if (tcpip != null) {
-			this.tcpip.send(FrameType.START.name());
-		}
-		state.next();
-	}
+	public abstract void start();
 
 	@Override
 	public void accept(ControllersVisitor controllersVisitor) {

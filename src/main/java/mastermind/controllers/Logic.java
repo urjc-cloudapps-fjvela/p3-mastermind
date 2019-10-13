@@ -3,45 +3,42 @@ package mastermind.controllers;
 import java.util.HashMap;
 import java.util.Map;
 
-import mastermind.models.Game;
-import mastermind.models.State;
+
+import mastermind.models.Session;
+
 import mastermind.models.StateValue;
-import santaTecla.utils.TCPIP;
 
-public class Logic {
+public abstract class Logic {
 
-	private State state;
-	private Game game;
-	private Map<StateValue, AcceptorController> controllers;
-	private TCPIP tcpip;
+	protected Session session;
+	protected Map<StateValue, AcceptorController> controllers;
 	protected StartController startController;
 	protected GameController gameController;
 	protected ResumeController resumeController;
 
-	public Logic(boolean isStandalone) {
+	// public Logic(State state, Game game) {
+		// this.state = state;
+		// this.game = game;
+	public Logic() {
 
-		tcpip = (isStandalone) ? null : TCPIP.createClientSocket();
-		state = new State();
-		game = new Game();
+	
 
-		controllers = new HashMap<StateValue, AcceptorController>();
-		startController = new StartController(game, state, tcpip);
-		gameController = new GameController(game, state, tcpip);
-		resumeController = new ResumeController(game, state, tcpip);
+        controllers = new HashMap<StateValue, AcceptorController>();
 
-		controllers.put(StateValue.INITIAL, startController);
-		controllers.put(StateValue.IN_GAME, gameController);
-		controllers.put(StateValue.FINAL, resumeController);
-		controllers.put(StateValue.EXIT, null);
+		// controllers = new HashMap<StateValue, AcceptorController>();
+		// startController = new StartController(session );
+		// gameController = new GameController(session);
+		// resumeController = new ResumeController(session);
+
+		// controllers.put(StateValue.INITIAL, startController);
+		// controllers.put(StateValue.IN_GAME, gameController);
+		// controllers.put(StateValue.FINAL, resumeController);
+		// controllers.put(StateValue.EXIT, null);
 	}
 
 	public AcceptorController getController() {
-		return controllers.get(state.getValueState());
+		return controllers.get( session.getValueState());
 	}
 
-	public void close() {
-		if (tcpip != null) {
-			tcpip.close();
-		}
-	}
+
 }

@@ -1,21 +1,21 @@
 package mastermind.controllers;
 
-import mastermind.models.Game;
-import mastermind.models.State;
-import santaTecla.utils.TCPIP;
+
+import mastermind.models.Session;
+
 
 public class UndoController extends Controller {
 
-	public UndoController(Game game, State state, TCPIP tcpip) {
-		super(game, state, tcpip);
+	public UndoController(Session session) {
+		super(session);
 	}
 	
-	void undo() {
-		game.undo();
+	public void undo() {
+		session.undo();
 	}
 
-	boolean isUndoable() {
-		return game.isUndoable();
+	public boolean isUndoable() {
+		return session.isUndoable();
 	}
 
 }

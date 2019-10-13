@@ -1,17 +1,19 @@
 package mastermind.server;
 
+import mastermind.controllers.server.LogicServerImplServer;
 import mastermind.server.dispatchers.DispatcherPrototype;
 
 public class MastermindServer {
 
     private DispatcherPrototype dispatcherPrototype;
 
-    private LogicServer logicServer;
+    private LogicServerImplServer logicServer;
+    
 
     private MastermindServer() {
-        this.dispatcherPrototype = new DispatcherPrototype();
-        this.logicServer = new LogicServer(true);
-        this.logicServer.createDispatchers(dispatcherPrototype);
+        dispatcherPrototype = new DispatcherPrototype();
+        logicServer = new LogicServerImplServer();
+        logicServer.createDispatchers(dispatcherPrototype);
     }
 
     public static void main(String[] args) {

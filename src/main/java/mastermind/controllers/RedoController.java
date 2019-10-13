@@ -1,20 +1,20 @@
 package mastermind.controllers;
 
-import mastermind.models.Game;
-import mastermind.models.State;
-import santaTecla.utils.TCPIP;
+
+import mastermind.models.Session;
+
 
 public class RedoController extends Controller {
 
-	public RedoController(Game game, State state, TCPIP tcpip) {
-		super(game, state, tcpip);
+	public RedoController(Session session) {
+		super(session);
 	}
 	
-	void redo() {
-		game.redo();
+	public void redo() {
+		session.redo();
 	}
 
-	boolean isRedoable() {
-		return game.isRedoable();
+	public boolean isRedoable() {
+		return session.isRedoable();
 	}
 }

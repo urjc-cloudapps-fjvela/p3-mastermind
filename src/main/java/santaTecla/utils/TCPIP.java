@@ -8,8 +8,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
+import mastermind.models.StateValue;
 import mastermind.types.Color;
 import mastermind.types.Error;
 import mastermind.types.FrameType;
@@ -44,8 +44,11 @@ public class TCPIP {
     }
 
     public void send(FrameType frameType) {
-        this.out.println(frameType.name());
-        this.out.flush();
+        send(frameType.name());
+    }
+
+    public void send(StateValue stateValue) {
+        send(stateValue.toString());
     }
 
     public void send(Error error) {
@@ -59,7 +62,7 @@ public class TCPIP {
 
     public void send(int value) {
         this.send("" + value);
-        send("\n");
+        
     }
 
     public void send(boolean value) {
@@ -112,6 +115,14 @@ public class TCPIP {
         }
 
         return result;
+    }
+
+    public StateValue receiveStateValue() {
+        String state = this.receiveLine();
+        if (state == null || (state != null && state.equals("null"))) {
+            return null;
+        }
+        return StateValue.valueOf(state);
     }
 
     public Error receiveError() {

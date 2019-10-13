@@ -3,19 +3,45 @@ package mastermind.controllers;
 import java.util.List;
 
 import mastermind.models.Combination;
-import mastermind.models.Game;
-import mastermind.models.State;
+
+import mastermind.models.Session;
+import mastermind.models.StateValue;
 import mastermind.types.Color;
 import mastermind.types.Error;
-import santaTecla.utils.TCPIP;
 
-public class ProposalController extends Controller {
+public abstract class ProposalController extends Controller {
 
-	public ProposalController(Game game, State state, TCPIP tcpip) {
-		super(game, state, tcpip);
+	public ProposalController(Session session) {
+		super(session);
 	}
 
-	public Error addProposedCombination(List<Color> colors) {
+	public abstract Error addProposedCombination(List<Color> colors);
+
+	public boolean isWinner() {
+		return session.isWinner();
+	}
+
+	public boolean isLooser() {
+		return session.isLooser();
+	}
+
+	public int getAttempts() {
+		return session.getAttempts();
+	}
+
+	public List<Color> getColors(int position) {
+		return session.getColors(position);
+	}
+
+	public int getBlacks(int position) {
+		return session.getBlacks(position);
+	}
+
+	public int getWhites(int position) {
+		return session.getWhites(position);
+	}
+
+	protected Error checkColors(List<Color> colors) {
 		Error error = null;
 		if (colors.size() != Combination.getWidth()) {
 			error = Error.WRONG_LENGTH;
@@ -32,36 +58,23 @@ public class ProposalController extends Controller {
 				}
 			}
 		}
-		if (error == null) {
-			game.addProposedCombination(colors);
-			if (game.isWinner() || game.isLooser()) {
-				state.next();
-			}
-		}
 		return error;
 	}
 
-	public boolean isWinner() {
-		return game.isWinner();
+	public void clear() {
+		session.clear();
 	}
 
-	public boolean isLooser() {
-		return game.isLooser();
+	public StateValue getStateValue() {
+		return session.getValueState();
 	}
 
-	public int getAttempts() {
-		return game.getAttempts();
+	public void nextState() {
+		session.nextState();
 	}
 
-	public List<Color> getColors(int position) {
-		return game.getColors(position);
+	public void resetState() {
+		session.resetState();
 	}
 
-	public int getBlacks(int position) {
-		return game.getBlacks(position);
-	}
-
-	public int getWhites(int position) {
-		return game.getWhites(position);
-	}
 }

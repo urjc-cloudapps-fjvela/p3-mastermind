@@ -10,13 +10,13 @@ public class UndoCommand extends Command {
 
     @Override
     public void execute() {
-        gameController.undo();
-        
+        ((GameController) acceptorController).undo();
+
     }
 
     @Override
     public boolean isActive() {
-        return gameController.isUndoable();
+        return ((GameController) acceptorController).isUndoable();
     }
 
 }

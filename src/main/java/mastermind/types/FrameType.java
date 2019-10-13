@@ -19,7 +19,13 @@ public enum FrameType {
     GET_WIDTH,
     NEXT_STATE,
     CLEAR,
-    RESET_STATE
+    RESET_STATE,
+    START_OPEN_SAVED_GAME,
+    GET_SAVED_GAMES_NAMES,
+    SET_STATE_VALUE,
+    IS_GAME_FINISHED,
+    SAVE,
+    EXITS_FILE
     ;
 
     public static FrameType parser(String string) {

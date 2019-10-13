@@ -1,21 +1,25 @@
 package mastermind.views.console.menu.command;
 
-import mastermind.controllers.GameController;
+import mastermind.controllers.AcceptorController;
 
 public abstract class Command {
 
-    protected CommandTitle title;
-    protected GameController gameController;
+    protected String title;
+    protected AcceptorController acceptorController;
 
-    protected Command(CommandTitle title, GameController gameController) {
+    protected Command(String title, AcceptorController acceptorController) {
         this.title = title;
-        this.gameController = gameController;
+        this.acceptorController = acceptorController;
+    }
+
+    protected Command(CommandTitle title, AcceptorController acceptorController) {
+        this(title.getTitle(), acceptorController);
     }
 
     public abstract void execute();
 
     public String getTitle() {
-        return title.getTitle();
+        return title;
     }
 
     public abstract boolean isActive();

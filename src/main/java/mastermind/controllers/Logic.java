@@ -15,6 +15,7 @@ public abstract class Logic {
 	protected StartController startController;
 	protected GameController gameController;
 	protected ResumeController resumeController;
+	protected SaveController saveController;
 
 	// public Logic(State state, Game game) {
 		// this.state = state;

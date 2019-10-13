@@ -21,19 +21,19 @@ public class SessionImplStandalone implements Session {
 
     @Override
     public StateValue getValueState() {
-        
+
         return state.getValueState();
     }
 
     @Override
     public void redo() {
-        
+
         game.redo();
     }
 
     @Override
     public boolean isRedoable() {
-        
+
         return game.isRedoable();
     }
 
@@ -45,49 +45,49 @@ public class SessionImplStandalone implements Session {
 
     @Override
     public boolean isUndoable() {
-        
+
         return game.isUndoable();
     }
 
     @Override
     public boolean isWinner() {
-        
+
         return game.isWinner();
     }
 
     @Override
     public boolean isLooser() {
-        
+
         return game.isLooser();
     }
 
     @Override
     public int getAttempts() {
-        
+
         return game.getAttempts();
     }
 
     @Override
     public List<Color> getColors(int position) {
-        
+
         return game.getColors(position);
     }
 
     @Override
     public int getBlacks(int position) {
-        
+
         return game.getBlacks(position);
     }
 
     @Override
     public int getWhites(int position) {
-        
+
         return game.getWhites(position);
     }
 
     @Override
     public int getWidth() {
-        
+
         return game.getWidth();
     }
 
@@ -98,8 +98,8 @@ public class SessionImplStandalone implements Session {
 
     @Override
     public void addProposedCombination(List<Color> colors) {
-        
-         game.addProposedCombination(colors);
+
+        game.addProposedCombination(colors);
     }
 
     @Override
@@ -112,5 +112,25 @@ public class SessionImplStandalone implements Session {
     public void resetState() {
         state.reset();
 
+    }
+
+    @Override
+    public Game getGame() {
+        return game;
+    }
+
+    @Override
+    public void setStateValue(StateValue stateValue) {
+        state.setValueState(stateValue);
+    }
+
+    @Override
+    public boolean isGameFinished() {
+        return isLooser() || isWinner();
+    }
+
+    @Override
+    public void setGame(Game game) {
+        this.game = game;
     }
 }

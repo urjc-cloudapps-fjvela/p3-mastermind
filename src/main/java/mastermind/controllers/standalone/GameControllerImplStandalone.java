@@ -95,4 +95,18 @@ public class GameControllerImplStandalone extends GameController {
 
     }
 
+    @Override
+    public void setStateValue(StateValue stateValue) {
+        proposalController.setSateValue(stateValue);
+
+    }
+
+    @Override
+    public boolean isGameFinished() {
+        return proposalController.isGameFinished();
+    }
+
+ 
+
+
 }

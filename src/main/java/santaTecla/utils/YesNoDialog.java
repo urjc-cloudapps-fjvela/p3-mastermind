@@ -1,15 +1,21 @@
 package santaTecla.utils;
 
-public class YesNoDialog  extends WithConsoleView {
+import mastermind.views.MessageView;
+
+public class YesNoDialog extends WithConsoleView {
 
 	private static final char AFIRMATIVE = 'y';
 
 	private static final char NEGATIVE = 'n';
-	
-	private static final String QUESTION = "? ("+YesNoDialog.AFIRMATIVE+"/"+YesNoDialog.NEGATIVE+"): ";
+
+	private static final String QUESTION = "? (" + YesNoDialog.AFIRMATIVE + "/" + YesNoDialog.NEGATIVE + "): ";
 
 	private static final String MESSAGE = "The value must be '" + YesNoDialog.AFIRMATIVE + "' or '"
 			+ YesNoDialog.NEGATIVE + "'";
+
+	public boolean read(MessageView title) {
+		return read(title.getMessage());
+	}
 
 	public boolean read(String title) {
 		assert title != null;

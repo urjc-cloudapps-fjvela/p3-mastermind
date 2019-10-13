@@ -11,7 +11,7 @@ public class ProposeCombinationCommand extends Command {
 
     @Override
     public void execute() {
-		new ProposalView().interact(gameController);
+		new ProposalView().interact((GameController)acceptorController);
         
     }
 

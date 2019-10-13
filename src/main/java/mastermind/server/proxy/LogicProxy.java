@@ -20,9 +20,12 @@ public class LogicProxy extends Logic {
         startController = new StartControllerImplProxy(session,tcpip);
         gameController = new GameControllerImplProxy(session,tcpip);
         resumeController = new ResumeControllerImplProxy(session, tcpip);
+        saveController = new SaveControllerImplProxy(session, tcpip);
 
         controllers.put(StateValue.INITIAL, startController);
         controllers.put(StateValue.IN_GAME, gameController);
+        controllers.put(StateValue.SAVING, saveController);
+
         controllers.put(StateValue.FINAL, resumeController);
         controllers.put(StateValue.EXIT, null);
     }

@@ -2,33 +2,42 @@ package mastermind.views.console;
 
 import mastermind.controllers.GameController;
 import mastermind.controllers.ResumeController;
+import mastermind.controllers.SaveController;
 import mastermind.controllers.StartController;
 import mastermind.views.View;
-import mastermind.views.console.menu.Menu;
+import mastermind.views.console.menu.GameMenu;
+import mastermind.views.console.menu.StartMenu;
 
 public class ConsoleView extends View {
-
-	private StartView startView;
 
 
 	private ResumeView resumeView;
 
+	private SaveView saveView;
+
 	public ConsoleView() {
-		this.startView = new StartView();
-		this.resumeView = new ResumeView();
+		resumeView = new ResumeView();
+		saveView = new SaveView();
 	}
 
 	@Override
 	public void visit(StartController startController) {
-		startView.interact(startController);
+		new StartMenu(startController).execute();
+
 	}
 
 	@Override
 	public void visit(ResumeController resumeController) {
 		resumeView.interact(resumeController);
 	}
+
 	@Override
 	public void visit(GameController gameController) {
-		new Menu(gameController).execute();
+		new GameMenu(gameController).execute();
+	}
+
+	@Override
+	public void visit(SaveController saveController) {
+		saveView.interact(saveController);
 	}
 }

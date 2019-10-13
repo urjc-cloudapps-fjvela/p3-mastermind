@@ -77,4 +77,14 @@ public abstract class ProposalController extends Controller {
 		session.resetState();
 	}
 
+	public void setSateValue(StateValue stateValue) {
+		session.setStateValue(stateValue);
+	}
+
+	public boolean isGameFinished() {
+		return session.isGameFinished();
+	}
+
+	
+
 }

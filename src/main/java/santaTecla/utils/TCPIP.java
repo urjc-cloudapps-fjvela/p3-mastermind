@@ -68,14 +68,19 @@ public class TCPIP {
     public void send(boolean value) {
         this.send("" + value);
     }
-
     public void send(List<Color> colors) {
         for (Color color : colors) {
             send(color.toString());
         }
         send("");
     }
-
+    
+    public void send(String[] stringItems) {
+        for (String item : stringItems) {
+            send(item);
+        }
+        send("");
+    }
     public String receiveLine() {
         String result = null;
         try {
@@ -116,6 +121,18 @@ public class TCPIP {
 
         return result;
     }
+
+    public List<String> receiveStringArray() {
+        List<String> result = new ArrayList<String>();
+        String line = receiveLine();
+        while (line != null && !line.equals("")) {
+            result.add(line);
+            line = receiveLine();
+        }
+        return result;
+    }
+
+    
 
     public StateValue receiveStateValue() {
         String state = this.receiveLine();

@@ -38,4 +38,11 @@ public interface Session {
 
     void resetState();
 
+    Game getGame();
+
+    void setGame(Game game);
+
+    void setStateValue(StateValue stateValue);
+
+    boolean isGameFinished();
 }

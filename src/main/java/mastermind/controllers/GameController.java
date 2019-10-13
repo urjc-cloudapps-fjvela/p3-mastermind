@@ -12,13 +12,14 @@ public abstract class GameController extends AcceptorController {
     protected UndoController undoController;
     protected RedoController redoController;
     protected ProposalController proposalController;
+    protected ExitController exitController;
 
     public GameController(Session session) {
         super(session);
 
         undoController = new UndoController(session);
         redoController = new RedoController(session);
-
+        exitController = new ExitController(session);
     }
 
     public abstract void undo();
@@ -50,6 +51,10 @@ public abstract class GameController extends AcceptorController {
     public abstract void nextState();
 
     public abstract void resetState();
+
+    public abstract void setStateValue(StateValue stateValue);
+
+    public abstract boolean isGameFinished();
 
     @Override
     public void accept(ControllersVisitor controllerVisitor) {

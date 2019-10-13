@@ -5,19 +5,23 @@ public class State {
 	private StateValue stateValue;
 	
 	public State() {
-		this.stateValue = StateValue.INITIAL;
+		stateValue = StateValue.INITIAL;
 	}
 	
 	public void next() {
-		this.stateValue = StateValue.values()[this.stateValue.ordinal()+1];
+		stateValue = StateValue.values()[stateValue.ordinal()+1];
 	}
 	
 	public void reset() {
-		this.stateValue = StateValue.INITIAL;
+		stateValue = StateValue.INITIAL;
 	}
 
 	public StateValue getValueState() {
-		return this.stateValue;
+		return stateValue;
+	}
+
+	public void setValueState(StateValue stateValue) {
+		this.stateValue = stateValue;
 	}
 	
 }

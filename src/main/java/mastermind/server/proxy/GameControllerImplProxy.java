@@ -98,7 +98,7 @@ public class GameControllerImplProxy extends GameController {
     @Override
     public void clear() {
         tcpip.send(FrameType.CLEAR);
-        
+
     }
 
     @Override
@@ -118,6 +118,18 @@ public class GameControllerImplProxy extends GameController {
     public void resetState() {
         tcpip.send(FrameType.RESET_STATE);
 
+    }
+
+    @Override
+    public void setStateValue(StateValue stateValue) {
+        tcpip.send(FrameType.SET_STATE_VALUE);
+        tcpip.send(stateValue);
+    }
+
+    @Override
+    public boolean isGameFinished() {
+        tcpip.send(FrameType.IS_GAME_FINISHED);
+        return tcpip.receiveBoolean();
     }
 
 }

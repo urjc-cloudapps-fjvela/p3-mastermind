@@ -3,9 +3,15 @@ package santaTecla.utils;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import mastermind.views.MessageView;
+
 public class Console {
 
 	private BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+	public String readString(MessageView title) {
+		return readString(title.getMessage());
+	}
 
 	public String readString(String title) {
 		String input = null;
@@ -59,6 +65,9 @@ public class Console {
 		System.out.print(string);
 	}
 
+	public void writeln(MessageView string) {
+		writeln(string.getMessage());
+	}
 	public void writeln(String string) {
 		System.out.println(string);
 	}

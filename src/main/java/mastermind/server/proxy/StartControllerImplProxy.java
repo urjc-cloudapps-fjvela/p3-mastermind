@@ -1,5 +1,7 @@
 package mastermind.server.proxy;
 
+import java.util.List;
+
 import mastermind.controllers.StartController;
 import mastermind.models.Session;
 import mastermind.types.FrameType;
@@ -16,7 +18,21 @@ public class StartControllerImplProxy extends StartController {
 
     @Override
     public void start() {
-        this.tcpip.send(FrameType.START);
+        tcpip.send(FrameType.START);
+    }
+
+    @Override
+    public void start(String fileName) {
+        tcpip.send(FrameType.START_OPEN_SAVED_GAME);
+        tcpip.send(fileName);
+
+    }
+
+    @Override
+    public String[] getSavedGamesNames() {
+        tcpip.send(FrameType.GET_SAVED_GAMES_NAMES);
+        List<String> result = tcpip.receiveStringArray();
+        return result.toArray(new String[result.size()]);
     }
 
 }

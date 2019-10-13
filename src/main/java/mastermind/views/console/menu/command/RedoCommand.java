@@ -10,12 +10,12 @@ public class RedoCommand extends Command {
 
     @Override
     public void execute() {
-        gameController.redo();
+        ((GameController) acceptorController).redo();
     }
 
     @Override
     public boolean isActive() {
-        return gameController.isRedoable();
+        return ((GameController) acceptorController).isRedoable();
     }
 
 }

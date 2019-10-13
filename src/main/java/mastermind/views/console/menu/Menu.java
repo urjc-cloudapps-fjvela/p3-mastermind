@@ -2,7 +2,6 @@ package mastermind.views.console.menu;
 
 import java.util.ArrayList;
 
-import mastermind.controllers.GameController;
 import mastermind.views.console.menu.command.*;
 import santaTecla.utils.WithConsoleView;
 
@@ -11,11 +10,8 @@ public class Menu extends WithConsoleView{
     private static final String OPTION = "Choose an option: ";
     private ArrayList<Command> commandList;
 
-    public Menu(GameController gameController) {
+    public Menu() {
         commandList = new ArrayList<Command>();
-        commandList.add(new ProposeCombinationCommand(gameController));
-        commandList.add(new UndoCommand(gameController));
-        commandList.add(new RedoCommand(gameController));
 
     }
 

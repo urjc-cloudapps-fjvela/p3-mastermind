@@ -32,41 +32,35 @@ public class ProposalController extends Controller {
 			}
 		}
 		if (error == null){
-			this.game.addProposedCombination(colors);
-			if (this.game.isWinner() || this.game.isLooser()) {
-				this.state.next();
+			game.addProposedCombination(colors);
+			if (game.isWinner() || game.isLooser()) {
+				state.next();
 			}
 		}
 		return error;	
 	}
 
 	public boolean isWinner() {
-		return this.game.isWinner();
+		return game.isWinner();
 	}
 
 	public boolean isLooser() {
-		return this.game.isLooser();
+		return game.isLooser();
 	}
 	
 	public int getAttempts() {
-		return this.game.getAttempts();
+		return game.getAttempts();
 	}
 
 	public List<Color> getColors(int position) {
-		return this.game.getColors(position);
+		return game.getColors(position);
 	}
 
 	public int getBlacks(int position) {
-		return this.game.getBlacks(position);
+		return game.getBlacks(position);
 	}
 
 	public int getWhites(int position) {
-		return this.game.getWhites(position);
+		return game.getWhites(position);
 	}
-	
-	@Override
-	public void accept(ControllersVisitor controllersVisitor) {
-		controllersVisitor.visit(this);
-	}
-
 }

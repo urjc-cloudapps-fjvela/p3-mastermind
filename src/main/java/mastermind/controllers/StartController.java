@@ -3,14 +3,14 @@ package mastermind.controllers;
 import mastermind.models.Game;
 import mastermind.models.State;
 
-public class StartController extends Controller {
+public class StartController extends AcceptorController {
 
 	public StartController(Game game, State state) {
 		super(game, state);
 	}
 	
 	public void start() {
-		this.state.next();
+		state.next();
 	}
 	
 	@Override

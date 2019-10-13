@@ -1,11 +1,11 @@
 package mastermind.views;
 
-import mastermind.controllers.Controller;
+import mastermind.controllers.AcceptorController;
 import mastermind.controllers.ControllersVisitor;
 
 public abstract class View implements ControllersVisitor {
 	
-	public void interact(Controller controller) {
+	public void interact(AcceptorController controller) {
 		controller.accept(this);
 	}
 

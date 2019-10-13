@@ -2,6 +2,7 @@ package mastermind.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import mastermind.types.Color;
 
@@ -11,56 +12,71 @@ public class Game {
 
 	private SecretCombination secretCombination;
 
-	private List<ProposedCombination> proposedCombinations;
+	private Stack<ProposedCombination> proposedCombinations;
+	private Stack<ProposedCombination> undoProposedCombinations;
 
 	private List<Result> results;
 
-	private int attempts;
+	// private int attempts;
 
 	public Game() {
-		this.clear();
+		clear();
 	}
 
 	public void clear() {
-		this.secretCombination = new SecretCombination();
-		this.proposedCombinations = new ArrayList<ProposedCombination>();
-		this.results = new ArrayList<Result>();
-		this.attempts = 0;
+		secretCombination = new SecretCombination();
+		proposedCombinations = new Stack<ProposedCombination>();
+		undoProposedCombinations = new Stack<ProposedCombination>();
+		results = new ArrayList<Result>();
 	}
 
 	public void addProposedCombination(List<Color> colors) {
 		ProposedCombination proposedCombination = new ProposedCombination(colors);
-		this.proposedCombinations.add(proposedCombination);
-		this.results.add(this.secretCombination.getResult(proposedCombination));
-		this.attempts++;
+		proposedCombinations.add(proposedCombination);
+		results.add(secretCombination.getResult(proposedCombination));
 	}
 
 	public boolean isLooser() {
-		return this.attempts == Game.MAX_LONG;
+		return getAttempts() == Game.MAX_LONG;
 	}
-	
+
 	public boolean isWinner() {
-		return this.results.get(this.attempts-1).isWinner();
+		return results.get(getAttempts() - 1).isWinner();
 	}
 
 	public int getAttempts() {
-		return this.attempts;
+		return proposedCombinations.size();
 	}
 
 	public List<Color> getColors(int position) {
-		return this.proposedCombinations.get(position).colors;
+		return proposedCombinations.get(position).colors;
 	}
 
 	public int getBlacks(int position) {
-		return this.results.get(position).getBlacks();
+		return results.get(position).getBlacks();
 	}
 
 	public int getWhites(int position) {
-		return this.results.get(position).getWhites();
+		return results.get(position).getWhites();
 	}
 
 	public int getWidth() {
 		return Combination.getWidth();
 	}
 
+	public void redo() {
+		proposedCombinations.add(undoProposedCombinations.pop());
+	}
+
+	public boolean isRedoable() {
+		return undoProposedCombinations.size() > 0;
+	}
+
+	public void undo() {
+		undoProposedCombinations.add(proposedCombinations.pop());
+	}
+
+	public boolean isUndoable() {
+		return proposedCombinations.size() > 0;
+	}
 }

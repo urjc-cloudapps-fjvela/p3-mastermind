@@ -2,34 +2,34 @@ package mastermind.views.console;
 
 import java.util.List;
 
-import mastermind.controllers.ProposalController;
+import mastermind.controllers.GameController;
 import mastermind.types.Color;
 import mastermind.types.Error;
 import mastermind.views.console.ErrorView;
 import santaTecla.utils.WithConsoleView;
 import mastermind.views.MessageView;
 
-class ProposalView extends WithConsoleView {
+public class ProposalView extends WithConsoleView {
 
-	void interact(ProposalController proposalController) {
+	public void interact(GameController gameController) {
 		Error error;
 		do {
-			List<Color> colors = new ProposedCombinationView(proposalController).read();
-			error = proposalController.addProposedCombination(colors);
+			List<Color> colors = new ProposedCombinationView(gameController).read();
+			error = gameController.addProposedCombination(colors);
 			if (error != null) {
 				new ErrorView(error).writeln();
 			}
 		} while (error != null);
 		this.console.writeln();
-		new AttemptsView(proposalController).writeln();
-		new SecretCombinationView(proposalController).writeln();
-		for (int i = 0; i < proposalController.getAttempts(); i++) {
-			new ProposedCombinationView(proposalController).write(i);
-			new ResultView(proposalController).writeln(i);
+		new AttemptsView(gameController).writeln();
+		new SecretCombinationView(gameController).writeln();
+		for (int i = 0; i < gameController.getAttempts(); i++) {
+			new ProposedCombinationView(gameController).write(i);
+			new ResultView(gameController).writeln(i);
 		}
-		if (proposalController.isWinner()) {
+		if (gameController.isWinner()) {
 			this.console.writeln(MessageView.WINNER.getMessage());
-		} else if (proposalController.isLooser()) {
+		} else if (gameController.isLooser()) {
 			this.console.writeln(MessageView.LOOSER.getMessage());
 		}
 	}

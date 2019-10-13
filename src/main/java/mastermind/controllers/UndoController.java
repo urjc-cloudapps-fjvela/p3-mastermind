@@ -2,11 +2,12 @@ package mastermind.controllers;
 
 import mastermind.models.Game;
 import mastermind.models.State;
+import santaTecla.utils.TCPIP;
 
 public class UndoController extends Controller {
 
-	public UndoController(Game game, State state) {
-		super(game, state);
+	public UndoController(Game game, State state, TCPIP tcpip) {
+		super(game, state, tcpip);
 	}
 	
 	void undo() {

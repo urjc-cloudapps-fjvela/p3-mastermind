@@ -7,11 +7,12 @@ import mastermind.models.Game;
 import mastermind.models.State;
 import mastermind.types.Color;
 import mastermind.types.Error;
+import santaTecla.utils.TCPIP;
 
 public class ProposalController extends Controller {
 
-	public ProposalController(Game game, State state) {
-		super(game, state);
+	public ProposalController(Game game, State state, TCPIP tcpip) {
+		super(game, state, tcpip);
 	}
 
 	public Error addProposedCombination(List<Color> colors) {
@@ -23,21 +24,21 @@ public class ProposalController extends Controller {
 				if (colors.get(i) == null) {
 					error = Error.WRONG_CHARACTERS;
 				} else {
-					for (int j = i+1; j < colors.size(); j++) {
+					for (int j = i + 1; j < colors.size(); j++) {
 						if (colors.get(i) == colors.get(j)) {
 							error = Error.DUPLICATED;
 						}
 					}
-				}				
+				}
 			}
 		}
-		if (error == null){
+		if (error == null) {
 			game.addProposedCombination(colors);
 			if (game.isWinner() || game.isLooser()) {
 				state.next();
 			}
 		}
-		return error;	
+		return error;
 	}
 
 	public boolean isWinner() {
@@ -47,7 +48,7 @@ public class ProposalController extends Controller {
 	public boolean isLooser() {
 		return game.isLooser();
 	}
-	
+
 	public int getAttempts() {
 		return game.getAttempts();
 	}

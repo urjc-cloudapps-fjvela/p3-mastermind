@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - MastermindClient",
+            "request": "launch",
+            "mainClass": "mastermind.server.MastermindClient",
+            "projectName": "mastermind"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MastermindServer",
+            "request": "launch",
+            "mainClass": "mastermind.server.MastermindServer",
+            "projectName": "mastermind"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - GraphicsMastermind",
             "request": "launch",
             "mainClass": "mastermind.GraphicsMastermind",

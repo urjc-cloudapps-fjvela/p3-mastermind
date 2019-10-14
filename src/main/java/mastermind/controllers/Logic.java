@@ -17,24 +17,13 @@ public abstract class Logic {
 	protected ResumeController resumeController;
 	protected SaveController saveController;
 
-	// public Logic(State state, Game game) {
-		// this.state = state;
-		// this.game = game;
+
 	public Logic() {
 
 	
 
         controllers = new HashMap<StateValue, AcceptorController>();
 
-		// controllers = new HashMap<StateValue, AcceptorController>();
-		// startController = new StartController(session );
-		// gameController = new GameController(session);
-		// resumeController = new ResumeController(session);
-
-		// controllers.put(StateValue.INITIAL, startController);
-		// controllers.put(StateValue.IN_GAME, gameController);
-		// controllers.put(StateValue.FINAL, resumeController);
-		// controllers.put(StateValue.EXIT, null);
 	}
 
 	public AcceptorController getController() {
